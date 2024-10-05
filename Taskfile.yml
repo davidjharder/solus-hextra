@@ -1,0 +1,26 @@
+version: "3"
+
+set: [pipefail]
+
+tasks:
+  # Default command builds for local preview
+  default:
+    cmds:
+      - hugo serve --bind 0.0.0.0
+  # Ensure people new to go-task and used to 'make help' have an easier time
+  help:
+    desc: Show how to list available tasks
+    cmds:
+      - |
+        echo "Use 'go-task -l/--list' to list available tasks."
+
+  # Merge "main" into "deploy" branch for GitHub pages deployment
+  deploy:
+    desc: Merge the "main" branch into "deploy" to start GitHub Pages build
+    cmds:
+      - git switch main
+      - git pull origin main
+      - git switch deploy
+      - git merge main
+      - git push origin deploy
+      - git switch main

@@ -1,0 +1,8 @@
+# Hugo output
+public/
+public-deployed/
+resources/
+.hugo_build.lock
+
+# Editor
+.vscode/
